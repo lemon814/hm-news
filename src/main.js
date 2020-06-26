@@ -5,9 +5,10 @@ import "./assets/iconfont.css";
 import "lib-flexible";
 import router from "./router";
 import axios from "axios";
-import { Button, Toast } from "vant";
+import { Button, Toast, Switch } from "vant";
 
 Vue.use(Button);
+Vue.use(Switch);
 Vue.use(Toast);
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://localhost:3000";

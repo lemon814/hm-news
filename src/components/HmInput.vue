@@ -60,13 +60,14 @@ export default {
     border: none;
     outline: none;
     border-bottom: 1px solid #ccc;
+    &.success {
+      border-bottom: 1px solid #0f0;
+    }
+    &.fail {
+      border-bottom: 1px solid #f00;
+    }
   }
-  .success {
-    border-bottom: 1px solid #0f0;
-  }
-  .fail {
-    border-bottom: 1px solid #f00;
-  }
+
   .tip {
     height: 20px;
     line-height: 20px;

@@ -7,7 +7,7 @@
       @input="username = $event"
       type="text"
       placeholder="请输入用户名"
-      :rule="/^1\d{4,10}$/"
+      :rule="/^1\d{3,10}$/"
       message="用户名格式不对"
       ref="username"
     ></hm-input>
@@ -16,7 +16,7 @@
       @input="password = $event"
       type="password"
       placeholder="请输入密码"
-      :rule="/^\d{3,12}$/"
+      :rule="/^\d{3,6}$/"
       message="密码格式不对"
       ref="password"
     ></hm-input>
@@ -35,20 +35,26 @@ export default {
   data() {
     return {
       username: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
     login() {
-      if (!this.$refs.username.validate(this.username)) return;
-      if (!this.$refs.password.validate(this.password)) return;
+      // if (!this.$refs.username.validate(this.username)) return;
+      // if (!this.$refs.password.validate(this.password)) return;
+      let isOk1 = this.$refs.username.validate(this.username);
+      let isOk2 = this.$refs.password.validate(this.password);
+      if (!isOk1 || !isOk2) {
+        this.$toast.fail("校验格式不正确");
+        return;
+      }
 
       this.$axios
         .post("/login", {
           username: this.username,
-          password: this.password,
+          password: this.password
         })
-        .then((res) => {
+        .then(res => {
           // console.log(res.data);
           if (res.data.statusCode === 200) {
             this.$router.push("/user");
@@ -57,11 +63,16 @@ export default {
             this.$toast.fail("登录失败");
           }
         });
-    },
+    }
   },
   computed: {},
-  created() {},
-  mounted() {},
+  created() {
+    console.log("登录", this.$route.params);
+
+    this.username = this.$route.params.username;
+    this.password = this.$route.params.password;
+  },
+  mounted() {}
 };
 </script>
 
