@@ -4,6 +4,13 @@ import "./styles/base.less";
 import "./assets/iconfont.css";
 import "lib-flexible";
 import router from "./router";
+import axios from "axios";
+import { Button, Toast } from "vant";
+
+Vue.use(Button);
+Vue.use(Toast);
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = "http://localhost:3000";
 
 import HmHeader from "./components/HmHeader.vue";
 import HmLogo from "./components/HmLogo.vue";

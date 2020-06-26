@@ -1,5 +1,5 @@
 <template>
-  <div class="hm-button">
+  <div class="hm-button" @click="fn">
     <slot></slot>
   </div>
 </template>
@@ -11,13 +11,18 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    fn() {
+      this.$emit("click");
+    },
+  },
   computed: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .hm-button {
   height: 50px;
   line-height: 50px;
