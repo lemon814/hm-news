@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
@@ -52,27 +52,29 @@ export default {
       this.$axios
         .post("/login", {
           username: this.username,
-          password: this.password
+          password: this.password,
         })
-        .then(res => {
+        .then((res) => {
           // console.log(res.data);
           if (res.data.statusCode === 200) {
+            localStorage.setItem("token", res.data.data.token);
+            localStorage.setItem("user_id", res.data.data.user.id);
             this.$router.push("/user");
             this.$toast.success("登录成功");
           } else {
             this.$toast.fail("登录失败");
           }
         });
-    }
+    },
   },
   computed: {},
   created() {
-    console.log("登录", this.$route.params);
+    // console.log("登录", this.$route.params);
 
     this.username = this.$route.params.username;
     this.password = this.$route.params.password;
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 

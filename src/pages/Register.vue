@@ -41,7 +41,7 @@ export default {
     return {
       username: "",
       nickname: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
@@ -58,10 +58,10 @@ export default {
         .post("/register", {
           username: this.username,
           nickname: this.nickname,
-          password: this.password
+          password: this.password,
         })
-        .then(res => {
-          console.log(res);
+        .then((res) => {
+          // console.log(res);
 
           if (res.data.statusCode === 200) {
             this.$toast.success("注册成功");
@@ -69,18 +69,18 @@ export default {
               name: "login",
               params: {
                 username: this.username,
-                password: this.password
-              }
+                password: this.password,
+              },
             });
           } else {
             this.$toast.fail(res.data.message);
           }
         });
-    }
+    },
   },
   computed: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 

@@ -12,8 +12,22 @@ const router = new VueRouter({
     { path: "/", redirect: "/login" },
     { path: "/login", name: "login", component: Login },
     { path: "/register", name: "register", component: Register },
-    { path: "/user", component: User },
+    { path: "/user", name: "user", component: User },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  // console.log(to.path);
+  let token = localStorage.getItem("token");
+  if (to.path === "/user") {
+    if (token) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
