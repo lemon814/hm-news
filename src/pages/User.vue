@@ -20,14 +20,14 @@
     <hm-navbar title="我的关注" content="关注的用户"></hm-navbar>
     <hm-navbar title="我的跟帖" content="跟帖/回复"></hm-navbar>
     <hm-navbar title="我的收藏" content="文档/视频"></hm-navbar>
-    <hm-navbar title="设置"></hm-navbar>
+    <hm-navbar title="设置" @click="$router.push('/edit')"></hm-navbar>
     <hm-navbar @click="logout" title="退出"></hm-navbar>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyComponent",
+  name: "User",
   props: {},
   data() {
     return {

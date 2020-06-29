@@ -1,6 +1,6 @@
 <template>
   <div class="hm-header">
-    <div class="left">
+    <div @click="$router.back()" class="left">
       <i class="iconfont iconjiantou2"></i>
     </div>
     <div class="center">
@@ -17,9 +17,14 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    fn() {
+      this.$emit("click");
+    }
+  },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 

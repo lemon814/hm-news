@@ -30,12 +30,12 @@
 
 <script>
 export default {
-  name: "login",
+  name: "Login",
   props: {},
   data() {
     return {
       username: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -52,9 +52,9 @@ export default {
       this.$axios
         .post("/login", {
           username: this.username,
-          password: this.password,
+          password: this.password
         })
-        .then((res) => {
+        .then(res => {
           // console.log(res.data);
           if (res.data.statusCode === 200) {
             localStorage.setItem("token", res.data.data.token);
@@ -65,7 +65,7 @@ export default {
             this.$toast.fail("登录失败");
           }
         });
-    },
+    }
   },
   computed: {},
   created() {
@@ -74,7 +74,7 @@ export default {
     this.username = this.$route.params.username;
     this.password = this.$route.params.password;
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 

@@ -5,13 +5,30 @@ import "./assets/iconfont.css";
 import "lib-flexible";
 import router from "./router";
 import axios from "axios";
-import { Button, Toast, Switch, Dialog } from "vant";
+import {
+  Button,
+  Toast,
+  Switch,
+  Dialog,
+  Field,
+  Radio,
+  RadioGroup,
+  Cell,
+  CellGroup,
+  Uploader,
+} from "vant";
 import moment from "moment";
 
 Vue.use(Button);
 Vue.use(Switch);
 Vue.use(Toast);
 Vue.use(Dialog);
+Vue.use(Field);
+Vue.use(Radio);
+Vue.use(RadioGroup);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Uploader);
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -24,6 +41,13 @@ axios.interceptors.response.use((res) => {
     router.push("/login");
   }
   return res;
+});
+axios.interceptors.request.use((config) => {
+  let token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = token;
+  }
+  return config;
 });
 
 Vue.filter("date", (res, format = "YYYY-MM-DD") => {

@@ -35,13 +35,13 @@
 
 <script>
 export default {
-  name: "register",
+  name: "Register",
   props: {},
   data() {
     return {
       username: "",
       nickname: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -58,9 +58,9 @@ export default {
         .post("/register", {
           username: this.username,
           nickname: this.nickname,
-          password: this.password,
+          password: this.password
         })
-        .then((res) => {
+        .then(res => {
           // console.log(res);
 
           if (res.data.statusCode === 200) {
@@ -69,18 +69,18 @@ export default {
               name: "login",
               params: {
                 username: this.username,
-                password: this.password,
-              },
+                password: this.password
+              }
             });
           } else {
             this.$toast.fail(res.data.message);
           }
         });
-    },
+    }
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 
