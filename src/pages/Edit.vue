@@ -6,11 +6,15 @@
       <van-uploader :before-read="beforeRead" :after-read="afterRead" />
     </div>
     <hm-navbar @click="showNicknameDialog" title="昵称" :content="info.nickname"></hm-navbar>
-    <hm-navbar title="密码" content="******"></hm-navbar>
+    <hm-navbar @click="showPasswordDialog" title="密码" content="******"></hm-navbar>
     <hm-navbar @click="showGenderDialog" title="性别" :content="info.gender===0?'女':'男'"></hm-navbar>
 
     <van-dialog @confirm="editNickname" v-model="nickname_show" title="修改昵称" show-cancel-button>
       <van-field v-model="nickname" />
+    </van-dialog>
+
+    <van-dialog @confirm="editPassword" v-model="password_show" title="修改密码" show-cancel-button>
+      <van-field v-model="password" type="password" />
     </van-dialog>
 
     <van-dialog @confirm="editGender" v-model="gender_show" title="修改性别" show-cancel-button>
@@ -37,25 +41,24 @@ export default {
       info: {},
       nickname_show: false,
       nickname: "",
+      password_show: false,
+      password: "",
       gender_show: false,
       gender: 1
     };
   },
   methods: {
-    getUserInfo() {
+    async getUserInfo() {
       let token = localStorage.getItem("token");
       let user_id = localStorage.getItem("user_id");
 
-      this.$axios
-        .get(`/user/${user_id}`, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(res => {
-          // console.log("info", res);
-          this.info = res.data.data;
-        });
+      let res = await this.$axios.get(`/user/${user_id}`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      // console.log("info", res);
+      this.info = res.data.data;
     },
     showNicknameDialog() {
       this.nickname_show = true;
@@ -69,6 +72,20 @@ export default {
 
       this.editUser({
         nickname: this.nickname
+      });
+    },
+    showPasswordDialog() {
+      this.password_show = true;
+      this.password = this.info.password;
+    },
+    editPassword() {
+      if (this.password === this.info.password) {
+        this.$toast("未修改");
+        return;
+      }
+
+      this.editUser({
+        password: this.password
       });
     },
     showGenderDialog() {
@@ -85,20 +102,17 @@ export default {
         gender: this.gender
       });
     },
-    editUser(data) {
+    async editUser(data) {
       let token = localStorage.getItem("token");
       let user_id = localStorage.getItem("user_id");
 
-      this.$axios
-        .post(`/user_update/${user_id}`, data, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(res => {
-          this.$toast.success("修改成功");
-          this.getUserInfo();
-        });
+      let res = await this.$axios.post(`/user_update/${user_id}`, data, {
+        headers: {
+          Authorization: token
+        }
+      });
+      this.$toast.success("修改成功");
+      this.getUserInfo();
     },
     beforeRead(file) {
       // console.log(file);
@@ -112,24 +126,21 @@ export default {
       }
       return true;
     },
-    afterRead(file) {
+    async afterRead(file) {
       let token = localStorage.getItem("token");
 
       let formdata = new FormData();
       formdata.append("file", file.file);
 
-      this.$axios
-        .post("/upload", formdata, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(res => {
-          // console.log(res);
-          this.editUser({
-            head_img: res.data.data.url
-          });
-        });
+      await this.$axios.post("/upload", formdata, {
+        headers: {
+          Authorization: token
+        }
+      });
+      // console.log(res);
+      this.editUser({
+        head_img: res.data.data.url
+      });
     }
   },
   computed: {},

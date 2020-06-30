@@ -18,7 +18,7 @@
       </div>
     </div>
     <hm-navbar @click="$router.push('/myfollow')" title="我的关注" content="关注的用户"></hm-navbar>
-    <hm-navbar title="我的跟帖" content="跟帖/回复"></hm-navbar>
+    <hm-navbar @click="$router.push('/mycomments')" title="我的跟帖" content="跟帖/回复"></hm-navbar>
     <hm-navbar title="我的收藏" content="文档/视频"></hm-navbar>
     <hm-navbar @click="$router.push('/edit')" title="设置"></hm-navbar>
     <hm-navbar @click="logout" title="退出"></hm-navbar>
@@ -35,41 +35,34 @@ export default {
     };
   },
   methods: {
-    logout() {
-      this.$dialog
-        .confirm({
+    async logout() {
+      try {
+        await this.$dialog.confirm({
           title: "温馨提示",
           message: "Master，你确定要退出吗？"
-        })
-        .then(() => {
-          // console.log("点了确定");
-          localStorage.removeItem("token");
-          localStorage.removeItem("user_id");
-          this.$router.push("/login");
-        })
-        .catch(() => {
-          // on cancel
         });
+        // console.log("点了确定");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        this.$router.push("/login");
+      } catch (error) {}
     }
   },
   computed: {},
-  created() {
+  async created() {
     let token = localStorage.getItem("token");
     let user_id = localStorage.getItem("user_id");
 
-    this.$axios
-      .get(`/user/${user_id}`, {
-        headers: {
-          Authorization: token
-        }
-      })
-      .then(res => {
-        // console.log("个人信息", res);
-        if (res.data.statusCode === 200) {
-          this.info = res.data.data;
-          this.$toast.success("获取个人信息成功");
-        }
-      });
+    let res = await this.$axios.get(`/user/${user_id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    // console.log("个人信息", res);
+    if (res.data.statusCode === 200) {
+      this.info = res.data.data;
+      this.$toast.success("获取个人信息成功");
+    }
   },
   mounted() {}
 };

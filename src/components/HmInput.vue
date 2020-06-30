@@ -13,17 +13,17 @@
 
 <script>
 export default {
-  name: "MyComponent",
+  name: "HmInput",
   props: {
     type: String,
     placeholder: String,
     value: String,
     rule: RegExp,
-    message: String,
+    message: String
   },
   data() {
     return {
-      status: "",
+      status: ""
     };
   },
   methods: {
@@ -42,11 +42,11 @@ export default {
           return false;
         }
       }
-    },
+    }
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 

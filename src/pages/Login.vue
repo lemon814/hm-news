@@ -39,7 +39,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    async login() {
       // if (!this.$refs.username.validate(this.username)) return;
       // if (!this.$refs.password.validate(this.password)) return;
       let isOk1 = this.$refs.username.validate(this.username);
@@ -49,22 +49,19 @@ export default {
         return;
       }
 
-      this.$axios
-        .post("/login", {
-          username: this.username,
-          password: this.password
-        })
-        .then(res => {
-          // console.log(res.data);
-          if (res.data.statusCode === 200) {
-            localStorage.setItem("token", res.data.data.token);
-            localStorage.setItem("user_id", res.data.data.user.id);
-            this.$router.push("/user");
-            this.$toast.success("登录成功");
-          } else {
-            this.$toast.fail("登录失败");
-          }
-        });
+      let res = await this.$axios.post("/login", {
+        username: this.username,
+        password: this.password
+      });
+      // console.log(res.data);
+      if (res.data.statusCode === 200) {
+        localStorage.setItem("token", res.data.data.token);
+        localStorage.setItem("user_id", res.data.data.user.id);
+        this.$router.push("/user");
+        this.$toast.success("登录成功");
+      } else {
+        this.$toast.fail("登录失败");
+      }
     }
   },
   computed: {},

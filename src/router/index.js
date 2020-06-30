@@ -6,6 +6,7 @@ import Register from "../pages/Register.vue";
 import User from "../pages/User.vue";
 import Edit from "../pages/Edit.vue";
 import MyFollow from "../pages/MyFollow.vue";
+import MyComments from "../pages/MyComments.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,7 @@ const router = new VueRouter({
     { path: "/user", name: "user", component: User },
     { path: "/edit", name: "edit", component: Edit },
     { path: "/myfollow", name: "myfollow", component: MyFollow },
+    { path: "/mycomments", name: "mycomments", component: MyComments },
   ],
 });
 

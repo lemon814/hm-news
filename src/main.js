@@ -16,19 +16,21 @@ import {
   Cell,
   CellGroup,
   Uploader,
+  List,
 } from "vant";
 import moment from "moment";
 
-Vue.use(Button);
-Vue.use(Switch);
 Vue.use(Toast);
 Vue.use(Dialog);
+Vue.use(Button);
+Vue.use(Switch);
 Vue.use(Field);
 Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Uploader);
+Vue.use(List);
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://localhost:3000";
 

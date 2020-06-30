@@ -45,7 +45,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    async register() {
       let isOk1 = this.$refs.username.validate(this.username);
       let isOk2 = this.$refs.nickname.validate(this.nickname);
       let isOk3 = this.$refs.password.validate(this.password);
@@ -54,28 +54,25 @@ export default {
         return;
       }
 
-      this.$axios
-        .post("/register", {
-          username: this.username,
-          nickname: this.nickname,
-          password: this.password
-        })
-        .then(res => {
-          // console.log(res);
+      let res = await this.$axios.post("/register", {
+        username: this.username,
+        nickname: this.nickname,
+        password: this.password
+      });
+      // console.log(res);
 
-          if (res.data.statusCode === 200) {
-            this.$toast.success("注册成功");
-            this.$router.push({
-              name: "login",
-              params: {
-                username: this.username,
-                password: this.password
-              }
-            });
-          } else {
-            this.$toast.fail(res.data.message);
+      if (res.data.statusCode === 200) {
+        this.$toast.success("注册成功");
+        this.$router.push({
+          name: "login",
+          params: {
+            username: this.username,
+            password: this.password
           }
         });
+      } else {
+        this.$toast.fail(res.data.message);
+      }
     }
   },
   computed: {},

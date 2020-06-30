@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "MyComponent",
+  name: "HmNavbar",
   props: {
     title: {
       type: String,

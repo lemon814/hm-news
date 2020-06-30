@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "MyComponent",
+  name: "HmButton",
   props: {},
   data() {
     return {};
@@ -14,11 +14,11 @@ export default {
   methods: {
     fn() {
       this.$emit("click");
-    },
+    }
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 

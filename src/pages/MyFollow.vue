@@ -28,18 +28,16 @@ export default {
     };
   },
   methods: {
-    getMyFollowList() {
-      this.$axios.get("/user_follows").then(res => {
-        // console.log(res);
-        this.list = res.data.data;
-      });
+    async getMyFollowList() {
+      let res = await this.$axios.get("/user_follows");
+      // console.log(res);
+      this.list = res.data.data;
     },
-    cancelMyFollow(id) {
-      this.$axios.get(`/user_unfollow/${id}`).then(res => {
-        // console.log(res);
-        this.$toast.success("取消关注成功");
-        this.getMyFollowList();
-      });
+    async cancelMyFollow(id) {
+      await this.$axios.get(`/user_unfollow/${id}`);
+      // console.log(res);
+      this.$toast.success("取消关注成功");
+      this.getMyFollowList();
     }
   },
   computed: {},
