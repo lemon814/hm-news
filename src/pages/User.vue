@@ -17,10 +17,10 @@
         <i class="iconfont iconjiantou1"></i>
       </div>
     </div>
-    <hm-navbar title="我的关注" content="关注的用户"></hm-navbar>
+    <hm-navbar @click="$router.push('/myfollow')" title="我的关注" content="关注的用户"></hm-navbar>
     <hm-navbar title="我的跟帖" content="跟帖/回复"></hm-navbar>
     <hm-navbar title="我的收藏" content="文档/视频"></hm-navbar>
-    <hm-navbar title="设置" @click="$router.push('/edit')"></hm-navbar>
+    <hm-navbar @click="$router.push('/edit')" title="设置"></hm-navbar>
     <hm-navbar @click="logout" title="退出"></hm-navbar>
   </div>
 </template>
