@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: "",
+  name: "App",
   props: {},
   data() {
     return {};
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 

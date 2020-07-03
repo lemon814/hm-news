@@ -7,6 +7,7 @@ import User from "../pages/User.vue";
 import Edit from "../pages/Edit.vue";
 import MyFollow from "../pages/MyFollow.vue";
 import MyComments from "../pages/MyComments.vue";
+import MyStar from "../pages/MyStar.vue";
 
 Vue.use(VueRouter);
 
@@ -19,13 +20,16 @@ const router = new VueRouter({
     { path: "/edit", name: "edit", component: Edit },
     { path: "/myfollow", name: "myfollow", component: MyFollow },
     { path: "/mycomments", name: "mycomments", component: MyComments },
+    { path: "/mystar", name: "mystar", component: MyStar },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   // console.log(to.path);
   let token = localStorage.getItem("token");
-  if (to.path === "/user") {
+
+  let authUrlArr = ["/user", "/edit", "/myfollow", "/mycomments", "/mystar"];
+  if (authUrlArr.includes(to.path)) {
     if (token) {
       next();
     } else {
