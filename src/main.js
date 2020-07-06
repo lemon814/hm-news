@@ -17,6 +17,9 @@ import {
   CellGroup,
   Uploader,
   List,
+  Tab,
+  Tabs,
+  PullRefresh
 } from "vant";
 import moment from "moment";
 
@@ -31,11 +34,17 @@ Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Uploader);
 Vue.use(List);
+Vue.use(Tab);
+Vue.use(Tabs);
+Vue.use(PullRefresh);
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://localhost:3000";
 
 axios.interceptors.response.use((res) => {
-  const { message, statusCode } = res.data;
+  const {
+    message,
+    statusCode
+  } = res.data;
   if (message === "用户信息验证失败" && statusCode === 401) {
     Toast.fail("token失效");
     localStorage.removeItem("token");

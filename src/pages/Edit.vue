@@ -120,8 +120,8 @@ export default {
         this.$toast("图片不能大于100kb");
         return false;
       }
-      if (file.type !== "image/jpeg") {
-        this.$toast("图片只能上传jpg类型");
+      if (file.type !== "image/jpeg || image/png") {
+        this.$toast("图片只能上传jpg/png类型");
         return;
       }
       return true;

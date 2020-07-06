@@ -17,6 +17,8 @@
         <i class="iconfont iconjiantou1"></i>
       </div>
     </div>
+
+    <hm-navbar @click="$router.push('/home')" title="首页"></hm-navbar>
     <hm-navbar @click="$router.push('/myfollow')" title="我的关注" content="关注的用户"></hm-navbar>
     <hm-navbar @click="$router.push('/mycomments')" title="我的跟帖" content="跟帖/回复"></hm-navbar>
     <hm-navbar @click="$router.push('/mystar')" title="我的收藏" content="文档/视频"></hm-navbar>
