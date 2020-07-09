@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: "Register",
+  name: "register",
   props: {},
   data() {
     return {

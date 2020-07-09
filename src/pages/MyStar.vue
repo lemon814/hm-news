@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "MyStar",
+  name: "mystar",
   props: {},
   data() {
     return {

@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "login",
   props: {},
   data() {
     return {
@@ -57,7 +57,11 @@ export default {
       if (res.data.statusCode === 200) {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("user_id", res.data.data.user.id);
-        this.$router.push("/user");
+        if (this.$route.params.back) {
+          this.$router.back();
+        } else {
+          this.$router.push("/user");
+        }
         this.$toast.success("登录成功");
       } else {
         this.$toast.fail("登录失败");

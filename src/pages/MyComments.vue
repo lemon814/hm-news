@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: "MyComments",
+  name: "mycomments",
   props: {},
   data() {
     return {

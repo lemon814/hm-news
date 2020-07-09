@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "Edit",
+  name: "edit",
   props: {},
   data() {
     return {

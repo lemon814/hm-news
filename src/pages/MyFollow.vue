@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "MyFollow",
+  name: "myfollow",
   props: {},
   data() {
     return {

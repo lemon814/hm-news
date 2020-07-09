@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "HmButton",
+  name: "hm-button",
   props: {},
   data() {
     return {};

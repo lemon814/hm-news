@@ -1,5 +1,5 @@
 <template>
-  <div class="hm-post">
+  <div class="hm-post" @click="$router.push(`/detail/${post.id}`)">
     <!-- 视频 -->
     <div class="video-post" v-if="post.type===2">
       <div class="title">{{ post.title }}</div>
@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: "HmPost",
+  name: "hm-post",
   props: {
     post: Object
   },

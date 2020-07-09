@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "HmHeader",
+  name: "hm-header",
   props: {},
   data() {
     return {};

@@ -9,20 +9,60 @@ import MyFollow from "../pages/MyFollow.vue";
 import MyComments from "../pages/MyComments.vue";
 import MyStar from "../pages/MyStar.vue";
 import Home from "../pages/Home.vue";
+import Detail from '../pages/Detail.vue';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes: [
-    { path: "/", redirect: "/login" },
-    { path: "/login", name: "login", component: Login },
-    { path: "/register", name: "register", component: Register },
-    { path: "/user", name: "user", component: User },
-    { path: "/edit", name: "edit", component: Edit },
-    { path: "/myfollow", name: "myfollow", component: MyFollow },
-    { path: "/mycomments", name: "mycomments", component: MyComments },
-    { path: "/mystar", name: "mystar", component: MyStar },
-    { path: "/home", name: "home", component: Home },
+  routes: [{
+      path: "/",
+      redirect: "/login"
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: User
+    },
+    {
+      path: "/edit",
+      name: "edit",
+      component: Edit
+    },
+    {
+      path: "/myfollow",
+      name: "myfollow",
+      component: MyFollow
+    },
+    {
+      path: "/mycomments",
+      name: "mycomments",
+      component: MyComments
+    },
+    {
+      path: "/mystar",
+      name: "mystar",
+      component: MyStar
+    },
+    {
+      path: "/home",
+      name: "home",
+      component: Home
+    },
+    {
+      path: "/detail/:id",
+      name: "detail",
+      component: Detail
+    },
   ],
 });
 

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "HmLogo",
+  name: "hm-logo",
   props: {},
   data() {
     return {};

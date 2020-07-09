@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "HmInput",
+  name: "hm-input",
   props: {
     type: String,
     placeholder: String,
