@@ -9,59 +9,66 @@ import MyFollow from "../pages/MyFollow.vue";
 import MyComments from "../pages/MyComments.vue";
 import MyStar from "../pages/MyStar.vue";
 import Home from "../pages/Home.vue";
-import Detail from '../pages/Detail.vue';
+import Detail from "../pages/Detail.vue";
+import TabsEdit from "../pages/TabsEdit.vue";
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes: [{
+  routes: [
+    {
       path: "/",
-      redirect: "/login"
+      redirect: "/login",
     },
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
     },
     {
       path: "/register",
       name: "register",
-      component: Register
+      component: Register,
     },
     {
       path: "/user",
       name: "user",
-      component: User
+      component: User,
     },
     {
       path: "/edit",
       name: "edit",
-      component: Edit
+      component: Edit,
     },
     {
       path: "/myfollow",
       name: "myfollow",
-      component: MyFollow
+      component: MyFollow,
     },
     {
       path: "/mycomments",
       name: "mycomments",
-      component: MyComments
+      component: MyComments,
     },
     {
       path: "/mystar",
       name: "mystar",
-      component: MyStar
+      component: MyStar,
     },
     {
       path: "/home",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/detail/:id",
       name: "detail",
-      component: Detail
+      component: Detail,
+    },
+    {
+      path: "/tabsedit",
+      name: "tabsedit",
+      component: TabsEdit,
     },
   ],
 });

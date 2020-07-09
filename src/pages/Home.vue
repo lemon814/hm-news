@@ -12,6 +12,11 @@
         <i class="iconfont iconwode"></i>
       </div>
     </div>
+    <van-sticky z-index="999">
+      <div class="container" @click="jump2tabsedit">
+        <i class="iconfont iconjiantou1"></i>
+      </div>
+    </van-sticky>
     <van-tabs v-model="active" sticky swipeable>
       <van-tab v-for="tab in tablist" :key="tab.id" :title="tab.name">
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
@@ -57,6 +62,12 @@ export default {
     }
   },
   created() {
+    let activeTabs = JSON.parse(localStorage.getItem("activeTabs"));
+    if (activeTabs) {
+      this.tablist = activeTabs;
+      this.getPostList(this.tablist[this.active].id);
+      return;
+    }
     this.getTabList();
   },
   mounted() {},
@@ -100,6 +111,22 @@ export default {
       setTimeout(() => {
         this.refreshing = false;
       }, 2000);
+    },
+    getNewTabs() {
+      let activeTabs = JSON.parse(localStorage.getItem("activeTabs"));
+      if (activeTabs) {
+        this.tablist = activeTabs;
+        this.active = 0;
+        this.getPostList(this.tablist[this.active].id);
+      }
+    },
+    jump2tabsedit() {
+      this.$router.push({
+        name: "tabsedit",
+        params: {
+          callback: this.getNewTabs
+        }
+      });
     }
   }
 };
@@ -108,6 +135,7 @@ export default {
 <style scoped lang="less">
 /deep/ .van-tabs__nav {
   background: #ccc;
+  margin-right: 40px;
 }
 .header {
   padding: 10px;
@@ -142,6 +170,21 @@ export default {
     .iconfont {
       margin-right: 10px;
     }
+  }
+}
+.container {
+  z-index: 999;
+  width: 40px;
+  height: 44px;
+  background: #ccc;
+  line-height: 44px;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  .iconfont {
+    font-weight: bold;
+    transform: rotate(90deg);
+    display: block;
   }
 }
 </style>
