@@ -12,7 +12,7 @@
     "core-js": "^3.25.5",
     "lib-flexible": "^0.3.2",
     "moment": "^2.29.4",
-    "postcss": "^7.0.38",
+    "postcss": "^7.0.39",
     "postcss-px2rem": "^0.3.0",
     "vant": "^3.6.4",
     "vue": "^3.2.41",
